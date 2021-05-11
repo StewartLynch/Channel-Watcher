@@ -157,12 +157,12 @@
 			isa = PBXGroup;
 			children = (
 				BBD195CE26439FF600134F66 /* YouTube.xcdatamodeld */,
+				BBD195D226439FF600134F66 /* Feed.swift */,
 				BB354D5E2645D1A100EEB46C /* Constant.swift */,
 				BBD195CC26439FF600134F66 /* Playlist+Extension.swift */,
 				BBD195CD26439FF600134F66 /* Video+Extension.swift */,
 				BBD195D026439FF600134F66 /* BaseModel.swift */,
 				BBD195D126439FF600134F66 /* Channel+extension.swift */,
-				BBD195D226439FF600134F66 /* Feed.swift */,
 				BBD195E92643A08700134F66 /* FetchType.swift */,
 				BBBA5B432644530A006225B0 /* AlertType.swift */,
 				BB12BAB7264617FB008B67AD /* ModalType.swift */,

@@ -20,7 +20,7 @@ extension Channel: BaseModel {
         }
     }
     
-    static func getChannelPlaylistsFor(_ thisChannel:Channel, completion: @escaping () -> Void) {
+    static func addAllPlaylistsFor(_ thisChannel:Channel, completion: @escaping () -> Void) {
         let manager = CoreDataManager.shared
         UpdateManager.shared.getResultsFor(fetchType: .playlists(thisChannel.channelId!)) { result in
             switch result {
@@ -42,7 +42,7 @@ extension Channel: BaseModel {
         }
     }
     
-    static func getPlaylistVideosFor(_ thisPlaylist: Playlist, completion: @escaping () -> Void) {
+    static func addllVideosFor(_ thisPlaylist: Playlist, completion: @escaping () -> Void) {
         UpdateManager.shared.getResultsFor(fetchType: .videos(thisPlaylist.playlistId!)) { result in
             switch result {
             case .success(let videoItems):

@@ -16,7 +16,7 @@ class PlaylistVideosViewModel: ObservableObject {
     func getVideos(for playlistID: NSManagedObjectID) {
         let playlist = Playlist.byId(id: playlistID) as! Playlist
         if playlist.playlistVideos.count == 0 {
-            Channel.getPlaylistVideosFor(playlist) {
+            Channel.addllVideosFor(playlist) {
                 DispatchQueue.main.async {
                     self.videos = playlist.playlistVideos.map(VideoViewModel.init)
                     self.playlistName = playlist.title ?? ""
@@ -26,7 +26,6 @@ class PlaylistVideosViewModel: ObservableObject {
             videos = playlist.playlistVideos.map(VideoViewModel.init)
             playlistName = playlist.title ?? ""
         }
-        
     }
 }
 
@@ -35,10 +34,6 @@ struct VideoViewModel: Identifiable {
     static var dateFormatter = DateFormatter()
     let video: Video
 
-    func updateNote() {
-
-    }
-    
     var id: NSManagedObjectID {
         video.objectID
     }
