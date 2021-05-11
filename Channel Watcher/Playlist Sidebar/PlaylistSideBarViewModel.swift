@@ -8,8 +8,6 @@
 import SwiftUI
 import CoreData
 
-#warning("check to see if CD has a playlist that does not have a corresponding Feed entry")
-
 class PlaylistSideBarViewModel: ObservableObject {
     @AppStorage("hideHidden") var hideHiddenAS = false
     @Published var selectedChannel: Channel?
@@ -51,7 +49,7 @@ class PlaylistSideBarViewModel: ObservableObject {
                 }
             }
         } else {
-            if (channel.lastUpdated ?? Date()).startOfDay < Date().startOfDay {
+            if (channel.lastUpdated ?? Date()).startOfDay == Date().startOfDay {
                 updatePlaylists(for: channel) {
                     DispatchQueue.main.async { [unowned self] in
                         selectedChannel = channel
@@ -83,22 +81,26 @@ class PlaylistSideBarViewModel: ObservableObject {
                         completion()
                     } else {
                         for missingPlaylistId in missingPlaylistIds {
-                            // add this playlist
                             if let playlist = playlistItems.first(where: {$0.id == missingPlaylistId}) {
+                                print("Adding \(playlist.snippet.title)")
                                 // Create a new playlist
                                 if playlist.snippet.thumbnails.default != nil {
                                     Playlist.newPlaylistForChannel(playlist: playlist) { newPlaylist in
                                         channel.addToPlaylists(newPlaylist)
                                     }
                                 }
+                            } else {
+                                let playlist = Playlist.byPlaylistId(playlistId: missingPlaylistId).first
+                                if let playlist = playlist {
+                                    print("Removing \(playlist.title ?? "")")
+                                    try? playlist.delete()
+                                }
                             }
                         }
                         channel.lastUpdated = Date()
                         manager.save()
                         completion()
-                        
                     }
-                    
                 }
             case .failure(let error):
                 print(error.localizedDescription)

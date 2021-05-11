@@ -9,6 +9,16 @@ import Foundation
 import CoreData
 
 extension Playlist: BaseModel {
+
+    static func byPlaylistId(playlistId: String) -> [Playlist] {
+        let request: NSFetchRequest<Playlist> = Playlist.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", #keyPath(Playlist.playlistId), playlistId)
+        do {
+            return try viewContext.fetch(request)
+        } catch {
+            return []
+        }
+    }
     
     static func newPlaylistForChannel(playlist: Items, completion: (Playlist) -> Void) {
         let manager = CoreDataManager.shared
