@@ -36,6 +36,7 @@ struct PlaylistSideBar: View {
                                             }
                                             .scaledToFit()
                                             .frame(width: 60, height: 45)
+                                            .mask(Rectangle().frame(width: 60, height: 33)) // Mask top and bottom black bars on thumbnail image
                                         Text(playlist.title)
                                         Spacer()
                                         Button {

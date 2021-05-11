@@ -24,8 +24,7 @@ struct PlaylistVideosView: View {
                             }
                             .scaledToFit()
                             .frame(width: 120, height: 90)
-                            .padding(.horizontal,8)
-                            .border(Color(.systemBackground),width: 10)
+                            .mask(Rectangle().frame(width: 120, height: 65)) // Mask top and bottom black bars on thumbnail image
                         VStack(alignment: .leading) {
                             Text(video.title)
                             Spacer()

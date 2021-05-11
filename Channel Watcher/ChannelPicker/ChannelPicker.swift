@@ -17,7 +17,7 @@ struct ChannelPicker: View {
             NavigationView {
                 VStack {
                     Text("Your Watched Channels")
-                        .font(.largeTitle)
+                        .font(.title)
                         .padding(.top, 40)
                     HStack(alignment: .center) {
                         TextField("Enter Channel ID", text: $channelPickerVM.youtubeID)
@@ -71,7 +71,8 @@ struct ChannelPicker: View {
                 .frame(width: 400)
                 .listStyle(GroupedListStyle())
                 .padding()
-            }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationViewStyle(StackNavigationViewStyle()) // prevent split view from happening here
             if showChannel {
                 StartView(selectedChannel: selectedChannel!,showChannel: $showChannel)
                     .transition(.scale)

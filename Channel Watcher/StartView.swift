@@ -32,8 +32,9 @@ struct StartView: View {
     }
 }
 
-//struct StartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StartView(selectedChannel)
-//    }
-//}
+struct StartView_Previews: PreviewProvider {
+    static let selectedChannel = Channel(context: CoreDataManager.shared.viewContext)
+    static var previews: some View {
+        StartView(selectedChannel: selectedChannel, showChannel: .constant(false))
+    }
+}
