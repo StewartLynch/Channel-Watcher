@@ -16,8 +16,9 @@ class ChannelPickerViewModel: ObservableObject {
         channels = Channel.all().map(ChannelViewModel.init).sorted(by: {$0.title < $1.title})
     }
     
-    func addChannel(youtubeID: String) {
-        UpdateManager.shared.getResultsFor(fetchType: FetchType.id(youtubeID)) { result in
+    func addChannel(youtubeID: String,byId:Bool) {
+        let fetchType = byId ? FetchType.id(youtubeID) : FetchType.userName(youtubeID)
+        UpdateManager.shared.getResultsFor(fetchType: fetchType) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -27,7 +28,7 @@ class ChannelPickerViewModel: ObservableObject {
                         DispatchQueue.main.async {
                             self.alertType = AlertType.singleButton(
                                 title: "Duplicate",
-                                message: "You already have the channel for id: \(youtubeID)",
+                                message: "You already have the channel for \(byId ? "channel Id" : "channel name") \(youtubeID)",
                                 dismissButton: Alert.Button.default(Text("OK")) {
                                     DispatchQueue.main.async {
                                         self.youtubeID = ""
@@ -41,7 +42,7 @@ class ChannelPickerViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.alertType = AlertType.singleButton(
                             title: "No Channel",
-                            message: "There is no channel for this id",
+                            message: "There is no channel for this \(byId ? "channel Id" : "channel name")",
                             dismissButton: Alert.Button.default(Text("OK")) {
                                 DispatchQueue.main.async {
                                     self.youtubeID = ""
@@ -59,6 +60,7 @@ class ChannelPickerViewModel: ObservableObject {
                 self.channels.append(ChannelViewModel(channel: channel))
                 self.getAllChannels()
                 self.youtubeID = ""
+                UIApplication.shared.endEditing()
             }
         }
     }

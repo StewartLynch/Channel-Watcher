@@ -12,27 +12,38 @@ struct ChannelPicker: View {
     @StateObject var channelPickerVM = ChannelPickerViewModel()
     @State private var selectedChannel: ChannelViewModel?
     @State private var showChannel = false
+    @State private var byId = true
     var body: some View {
         ZStack {
             NavigationView {
                 VStack {
-                    Text("Your Watched Channels")
-                        .font(.title)
-                        .padding(.top, 40)
-                    HStack(alignment: .center) {
-                        TextField("Enter Channel ID", text: $channelPickerVM.youtubeID)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.top)
-                        Button {
-                            channelPickerVM.addChannel(youtubeID: channelPickerVM.youtubeID)
-                        } label: {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title3)
+                        Text("Your Watched Channels")
+                            .font(.title)
+                            .padding(.top, 40)
+                            .onTapGesture {
+                                UIApplication.shared.endEditing()
+                            }
+                    VStack {
+                        Picker("Search Type", selection: $byId) {
+                            Text("Channel Id").tag(true)
+                            Text("Channel Name").tag(false)
                         }
-                        .disabled(channelPickerVM.youtubeID.isEmpty)
+                        .pickerStyle(SegmentedPickerStyle())
+                        HStack(alignment: .center) {
+                            TextField(byId ? "Enter Channel ID" : "Enter Channel name", text: $channelPickerVM.youtubeID)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.top)
+                            Button {
+                                channelPickerVM.addChannel(youtubeID: channelPickerVM.youtubeID, byId: byId)
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title3)
+                            }
+                            .padding(.vertical)
+                            .disabled(channelPickerVM.youtubeID.isEmpty)
+                        }
                     }
                     .frame(width: 300)
-                    .padding(.vertical)
                     List {
                         Section(header: Text("Channels")) {
                             if channelPickerVM.channels.isEmpty {
@@ -40,7 +51,6 @@ struct ChannelPicker: View {
                             }
                             ForEach(channelPickerVM.channels) { channel in
                                 Button {
-//                                    selectedChannel = Channel.byId(id: channel.id) as? Channel
                                     selectedChannel = channel
                                     withAnimation {
                                         showChannel = true
@@ -67,6 +77,7 @@ struct ChannelPicker: View {
                             })
                         }
                     }
+                    Spacer()
                 }
                 .navigationTitle("Channel Watcher")
                 .frame(width: 400)

@@ -15,7 +15,7 @@ struct PlaylistVideosView: View {
         List {
             ForEach(playlistVideoVM.videos) { video in
                 NavigationLink(
-                    destination: VideoDetailView(video: video)) {
+                    destination: VideoDetailView(selectedVideo: video)) {
                     HStack(alignment: .top) {
                         WebImage(url: video.thumbnail)
                             .resizable()

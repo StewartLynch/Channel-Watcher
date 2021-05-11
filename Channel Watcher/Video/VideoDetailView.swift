@@ -9,61 +9,51 @@ import SwiftUI
 
 struct VideoDetailView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
-    let video: VideoViewModel
+    let selectedVideo: VideoViewModel
+    @State private var myNotes = false
     @State private var notes: String = ""
     var body: some View {
         GeometryReader { geo in
+            ScrollView {
             VStack {
-                VideoWebView(videoID: video.videoID, inline: true)
+                VideoWebView(videoID: selectedVideo.videoID, inline: true)
                     .frame(width: geo.size.width, height: geo.size.width * 9 / 16)
-                if sizeClass == .compact {
-                    VStack {
-                        videoNotesView()
-                    }
+                Picker("Notes type", selection: $myNotes) {
+                    Text("Video Notes").tag(false)
+                    Text("My Notes").tag(true)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                if myNotes {
+                        TextEditor(text: $notes)
                 } else {
-                    HStack {
-                        videoNotesView()
+                    ScrollView {
+                        Text(selectedVideo.detail)
                     }
                 }
                 Spacer()
             }
-        }
-        .padding()
-        .navigationTitle(video.title)
-        .onAppear {
-            notes = video.notes
-        }
-    }
-
-    func videoNotesView() -> some View {
-        Group {
-            VStack {
-                Text("Video Notes")
-                    .padding(.vertical,3)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(.secondarySystemBackground))
-                ScrollView {
-                    Text(video.detail)
-                }
-            }
-            VStack {
-                Text("My Notes")
-                    .padding(.vertical,3)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(.secondarySystemBackground))
-                TextEditor(text: $notes)
-            }
             .onChange(of: notes, perform: { note in
                 // Save to CoreData
-                let video = Video.byId(id: video.id) as! Video
-                video.updateNote(note)
+                if notes != " " {
+                    let video = Video.byId(id: selectedVideo.id) as! Video
+                    video.updateNote(note)
+                }
             })
+            }
+        }
+        .padding()
+        .navigationTitle(selectedVideo.title)
+        .onAppear {
+            notes = selectedVideo.notes
+            if notes.isEmpty {
+                notes = " "
+            } // This is a workaround to get the notes field to be active when it is empty
         }
     }
 }
 
 struct VideoView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoDetailView(video: VideoViewModel(video: Video(context: CoreDataManager.shared.viewContext)))
+        VideoDetailView(selectedVideo: VideoViewModel(video: Video(context: CoreDataManager.shared.viewContext)))
     }
 }

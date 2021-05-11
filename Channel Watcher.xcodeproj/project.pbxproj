@@ -17,6 +17,8 @@
 		BB354D792646042600EEB46C /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB354D6C2646042600EEB46C /* VideoDetailView.swift */; };
 		BB354D7D2646042600EEB46C /* PlaylistSideBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB354D712646042600EEB46C /* PlaylistSideBarViewModel.swift */; };
 		BB354D7E2646042600EEB46C /* PlaylistSideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB354D722646042600EEB46C /* PlaylistSideBar.swift */; };
+		BB3783C5264B021A0010136C /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C4264B021A0010136C /* UIApplication+Extension.swift */; };
+		BB3783C7264B03730010136C /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C6264B03730010136C /* Extension+String.swift */; };
 		BBBA5B442644530A006225B0 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA5B432644530A006225B0 /* AlertType.swift */; };
 		BBD195BD26439FD200134F66 /* Channel_WatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */; };
 		BBD195BF26439FD200134F66 /* ChannelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD195BE26439FD200134F66 /* ChannelPicker.swift */; };
@@ -48,6 +50,9 @@
 		BB354D6C2646042600EEB46C /* VideoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		BB354D712646042600EEB46C /* PlaylistSideBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistSideBarViewModel.swift; sourceTree = "<group>"; };
 		BB354D722646042600EEB46C /* PlaylistSideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistSideBar.swift; sourceTree = "<group>"; };
+		BB3783C4264B021A0010136C /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		BB3783C6264B03730010136C /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		BB3783C8264B121F0010136C /* Channel Watcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Channel Watcher.entitlements"; sourceTree = "<group>"; };
 		BBBA5B432644530A006225B0 /* AlertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		BBD195B926439FD200134F66 /* Channel Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Channel Watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel_WatcherApp.swift; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 		BBD195BB26439FD200134F66 /* Channel Watcher */ = {
 			isa = PBXGroup;
 			children = (
+				BB3783C8264B121F0010136C /* Channel Watcher.entitlements */,
 				BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */,
 				BBD195EB2643A0EE00134F66 /* ChannelPicker */,
 				BB12BABB26462993008B67AD /* StartView.swift */,
@@ -173,9 +179,11 @@
 		BBD195DB2643A01D00134F66 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BB3783C4264B021A0010136C /* UIApplication+Extension.swift */,
 				BBD195DC2643A01D00134F66 /* Date+Extension.swift */,
 				BBD195DD2643A01D00134F66 /* Sort+Extension.swift */,
 				BBD195DE2643A01D00134F66 /* Array+Extension.swift */,
+				BB3783C6264B03730010136C /* Extension+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,9 +286,11 @@
 				BB354D762646042600EEB46C /* PlaylistVideosViewModel.swift in Sources */,
 				BB354D752646042600EEB46C /* PlaylistVideosView.swift in Sources */,
 				BBD195D926439FF600134F66 /* Feed.swift in Sources */,
+				BB3783C5264B021A0010136C /* UIApplication+Extension.swift in Sources */,
 				BBD195D626439FF600134F66 /* YouTube.xcdatamodeld in Sources */,
 				BBD195E12643A01D00134F66 /* Array+Extension.swift in Sources */,
 				BBD195D826439FF600134F66 /* Channel+extension.swift in Sources */,
+				BB3783C7264B03730010136C /* Extension+String.swift in Sources */,
 				BBD195E02643A01D00134F66 /* Sort+Extension.swift in Sources */,
 				BBD195EA2643A08700134F66 /* FetchType.swift in Sources */,
 				BB354D7E2646042600EEB46C /* PlaylistSideBar.swift in Sources */,
@@ -427,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Channel Watcher/Channel Watcher.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Channel Watcher/Preview Content\"";
 				DEVELOPMENT_TEAM = RKV4UP49S6;
@@ -439,8 +450,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.createchsol.Channel-Watcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -449,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Channel Watcher/Channel Watcher.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Channel Watcher/Preview Content\"";
 				DEVELOPMENT_TEAM = RKV4UP49S6;
@@ -461,8 +474,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.createchsol.Channel-Watcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
