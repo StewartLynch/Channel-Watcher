@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StartView: View {
-    var selectedChannel: Channel
+    var selectedChannel: ChannelViewModel
     @Binding var showChannel:Bool
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var body: some View {
@@ -33,7 +33,7 @@ struct StartView: View {
 }
 
 struct StartView_Previews: PreviewProvider {
-    static let selectedChannel = Channel(context: CoreDataManager.shared.viewContext)
+    static let selectedChannel = ChannelViewModel(channel: Channel(context: CoreDataManager.shared.viewContext))
     static var previews: some View {
         StartView(selectedChannel: selectedChannel, showChannel: .constant(false))
     }

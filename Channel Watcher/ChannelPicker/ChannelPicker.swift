@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct ChannelPicker: View {
     @StateObject var channelPickerVM = ChannelPickerViewModel()
-    @State private var selectedChannel: Channel?
+    @State private var selectedChannel: ChannelViewModel?
     @State private var showChannel = false
     var body: some View {
         ZStack {
@@ -40,7 +40,8 @@ struct ChannelPicker: View {
                             }
                             ForEach(channelPickerVM.channels) { channel in
                                 Button {
-                                    selectedChannel = Channel.byId(id: channel.id) as? Channel
+//                                    selectedChannel = Channel.byId(id: channel.id) as? Channel
+                                    selectedChannel = channel
                                     withAnimation {
                                         showChannel = true
                                     }

@@ -9,6 +9,16 @@ import Foundation
 import CoreData
 
 extension Video: BaseModel {
+    
+    static func byVideoId(videoId: String) -> [Video] {
+        let request: NSFetchRequest<Video> = Video.fetchRequest()
+        request.predicate = NSPredicate(format: "%K = %@", #keyPath(Video.videoID), videoId)
+        do {
+            return try viewContext.fetch(request)
+        } catch {
+            return []
+        }
+    }
     static func newVideoForPlaylist(video: Items, completion: (Video) -> Void) {
         let manager = CoreDataManager.shared
         let newVideo = Video(context: manager.viewContext)

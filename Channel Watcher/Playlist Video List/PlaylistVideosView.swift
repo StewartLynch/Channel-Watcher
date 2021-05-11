@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct PlaylistVideosView: View {
     @StateObject var playlistVideoVM = PlaylistVideosViewModel()
-    let playlist: PlaylistViewModel
+    let selectedPlaylist: PlaylistViewModel
     var body: some View {
         List {
             ForEach(playlistVideoVM.videos) { video in
@@ -42,7 +42,7 @@ struct PlaylistVideosView: View {
         .navigationTitle(playlistVideoVM.playlistName)
         .listStyle(PlainListStyle())
         .onAppear {
-            playlistVideoVM.getVideos(for: playlist.id)
+            playlistVideoVM.loadData(for: selectedPlaylist)
         }
     }
 }
@@ -50,6 +50,6 @@ struct PlaylistVideosView: View {
 struct PlaylistVideosView_Previews: PreviewProvider {
     static var previews: some View {
         let playlist = Playlist(context: CoreDataManager.shared.viewContext)
-        PlaylistVideosView(playlist: PlaylistViewModel(playlist: playlist))
+        PlaylistVideosView(selectedPlaylist: PlaylistViewModel(playlist: playlist))
     }
 }

@@ -12,7 +12,7 @@ struct PlaylistSideBar: View {
     @StateObject var playlistSBVM = PlaylistSideBarViewModel()
     @State private var alertType: AlertType?
     @Binding var showChannel: Bool
-    var selectedChannel:Channel
+    var selectedChannel:ChannelViewModel
     var body: some View {
             Group {
                 if let _ = playlistSBVM.selectedChannel {
@@ -26,7 +26,7 @@ struct PlaylistSideBar: View {
                         ForEach(playlistSBVM.playlists) { playlist in
                             NavigationLink(
                                 destination:
-                                    PlaylistVideosView(playlist: playlist),
+                                    PlaylistVideosView(selectedPlaylist: playlist),
                                 label: {
                                     HStack {
                                         WebImage(url: playlist.thumbnail)
@@ -40,7 +40,7 @@ struct PlaylistSideBar: View {
                                         Text(playlist.title)
                                         Spacer()
                                         Button {
-                                            playlistSBVM.toggleThisPlayList(thisPlaylist: playlist)
+                                            playlistSBVM.toggleShowHideDisabled(thisPlaylist: playlist)
                                         } label: {
                                             Image(systemName: playlist.isHidden ? "eye.fill" : "slash.circle")
                                         }

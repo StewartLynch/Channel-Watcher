@@ -42,7 +42,7 @@ extension Channel: BaseModel {
         }
     }
     
-    static func addllVideosFor(_ thisPlaylist: Playlist, completion: @escaping () -> Void) {
+    static func addAllVideosFor(_ thisPlaylist: Playlist, completion: @escaping () -> Void) {
         UpdateManager.shared.getResultsFor(fetchType: .videos(thisPlaylist.playlistId!)) { result in
             switch result {
             case .success(let videoItems):

@@ -10,7 +10,7 @@ import CoreData
 
 class PlaylistSideBarViewModel: ObservableObject {
     @AppStorage("hideHidden") var hideHiddenAS = false
-    @Published var selectedChannel: Channel?
+    @Published var selectedChannel: ChannelViewModel?
     @Published var playlists: [PlaylistViewModel] = []
     @Published var hideHidden:Bool = false  {
         didSet {
@@ -25,45 +25,44 @@ class PlaylistSideBarViewModel: ObservableObject {
         self.hideHidden = hideHiddenAS
     }
     
-    func displayPlaylists(for channel: Channel, hideHidden:Bool) -> [PlaylistViewModel] {
-        return channel.channelPlaylists(hideHidden: hideHidden).map(PlaylistViewModel.init)
+    func loadData(channel: ChannelViewModel) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        let thisChannel = Channel.byId(id: channel.id) as! Channel
+        print(dateFormatter.string(from: channel.lastUpdated))
+        if thisChannel.channelPlaylists.count == 0 {
+            Channel.addAllPlaylistsFor(thisChannel) {
+                self.updateList(for: channel)
+            }
+        } else {
+            if channel.lastUpdated.startOfDay < Date().startOfDay {
+                updatePlaylists(for: thisChannel) {
+                    self.updateList(for: channel)
+                }
+            }
+            self.updateList(for: channel)
+        }
+    }
+    
+    func updateList(for channel: ChannelViewModel) {
+        DispatchQueue.main.async { [unowned self] in
+            selectedChannel = channel
+            playlists = displayPlaylists(for: channel, hideHidden: hideHidden)
+        }
+    }
+    
+    func displayPlaylists(for channel: ChannelViewModel, hideHidden:Bool) -> [PlaylistViewModel] {
+        let thisChannel = Channel.byId(id: channel.id) as! Channel
+        return thisChannel.channelPlaylists(hideHidden: hideHidden).map(PlaylistViewModel.init)
             .sorted(by: {$0.title < $1.title})
     }
     
-    func toggleThisPlayList(thisPlaylist: PlaylistViewModel) {
+    func toggleShowHideDisabled(thisPlaylist: PlaylistViewModel) {
         thisPlaylist.toggleHidden()
         if let channel = selectedChannel {
             playlists = displayPlaylists(for: channel, hideHidden: hideHidden)
         }
     }
-    
-    func loadData(channel: Channel) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        print(dateFormatter.string(from: channel.lastUpdated!))
-        if channel.channelPlaylists.count == 0 {
-            Channel.addAllPlaylistsFor(channel) {
-                DispatchQueue.main.async { [unowned self] in
-                    selectedChannel = channel
-                    playlists = displayPlaylists(for: channel, hideHidden: hideHidden)
-                }
-            }
-        } else {
-            if (channel.lastUpdated ?? Date()).startOfDay == Date().startOfDay {
-                updatePlaylists(for: channel) {
-                    DispatchQueue.main.async { [unowned self] in
-                        selectedChannel = channel
-                        playlists = displayPlaylists(for: channel, hideHidden: hideHidden)
-                    }
-                }
-            }
-            DispatchQueue.main.async { [unowned self] in
-                selectedChannel = channel
-                playlists = displayPlaylists(for: channel, hideHidden: hideHidden)
-            }
-        }
-    }
-    
     
     func updatePlaylists(for channel: Channel, completion: @escaping () -> Void) {
         print("Checking for updated playlists")
@@ -139,6 +138,10 @@ struct PlaylistViewModel: Identifiable {
     
     var isHidden: Bool {
         playlist.isHidden
+    }
+    
+    var lastUpdated: Date {
+        playlist.lastUpdated ?? Date()
     }
 }
 
