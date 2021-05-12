@@ -5,10 +5,11 @@
 //  Created by Stewart Lynch on 2021-05-03.
 //
 
-import Foundation
+import SwiftUI
 import CoreData
 
 class PlaylistVideosViewModel: ObservableObject {
+    @AppStorage("ascendingSortOrder") var ascending = true
     @Published var videos: [VideoViewModel] = []
     @Published var playlistName = ""
 
@@ -38,9 +39,14 @@ class PlaylistVideosViewModel: ObservableObject {
         }
     }
     
+    func reverseListDisplay(for playlist: PlaylistViewModel) {
+        ascending.toggle()
+        videos = displayVideos(for: playlist)
+    }
+    
     func displayVideos(for playlist: PlaylistViewModel) -> [VideoViewModel] {
         let thisPlaylist = Playlist.byId(id: playlist.id) as! Playlist
-        return thisPlaylist.playlistVideos.map(VideoViewModel.init).sorted(by: {$0.publishedAt < $1.publishedAt})
+        return thisPlaylist.playlistVideos(order: ascending ? .ascending : .descending).map(VideoViewModel.init)
     }
     
     func updateVideos(for playlist: Playlist, completion: @escaping () -> Void) {

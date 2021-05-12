@@ -66,6 +66,14 @@ struct ChannelPicker: View {
                                             .frame(width: 60, height: 60)
                                             .cornerRadius(10)
                                         Text(channel.title)
+                                        #if targetEnvironment(macCatalyst)
+                                        Spacer()
+                                        Button {
+                                            channelPickerVM.deleteChannel(channel: channel)
+                                        } label: {
+                                            Image(systemName: "trash.fill")
+                                        }
+                                        #endif
                                     }
                                 }
                             }
@@ -92,6 +100,11 @@ struct ChannelPicker: View {
         }
         .onAppear {
             channelPickerVM.getAllChannels()
+            #if targetEnvironment(macCatalyst)
+                print("UIKit running on macOS")
+            #else
+                print("Your regular code")
+            #endif
         }
         .alert(item: $channelPickerVM.alertType) { $0.alert}
     }

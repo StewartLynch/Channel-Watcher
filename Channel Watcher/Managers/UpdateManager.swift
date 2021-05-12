@@ -36,6 +36,7 @@ class UpdateManager {
         })
         .eraseToAnyPublisher()
     }
+
     
     func getResultsFor(fetchType: FetchType, functionCompletion: @escaping (Result<[Items]?,APIService.APIError>) -> Void) {
         let urlString = fetchType.urlString

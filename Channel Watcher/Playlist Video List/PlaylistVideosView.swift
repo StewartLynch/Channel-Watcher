@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct PlaylistVideosView: View {
     @StateObject var playlistVideoVM = PlaylistVideosViewModel()
+    @AppStorage("ascendingSortOrder") var ascending = true
     let selectedPlaylist: PlaylistViewModel
     var body: some View {
         List {
@@ -24,7 +25,7 @@ struct PlaylistVideosView: View {
                             }
                             .scaledToFit()
                             .frame(width: 120, height: 90)
-                            .mask(Rectangle().frame(width: 120, height: 65)) // Mask top and bottom black bars on thumbnail image
+                            .mask(Rectangle().frame(width: 120, height: 66)) // Mask top and bottom black bars on thumbnail image
                         VStack(alignment: .leading) {
                             Text(video.title)
                             Spacer()
@@ -40,6 +41,14 @@ struct PlaylistVideosView: View {
         .frame(minWidth: 0, idealWidth: 500, maxWidth: 500)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(playlistVideoVM.playlistName)
+        .navigationBarItems(trailing: Button {
+            playlistVideoVM.reverseListDisplay(for: selectedPlaylist)
+        } label: {
+            Image(ascending ? "sortAscending" : "sortDescending")
+                .resizable()
+                .scaledToFit()
+        }.frame(width: 30, height: 30)
+        )
         .listStyle(PlainListStyle())
         .onAppear {
             playlistVideoVM.loadData(for: selectedPlaylist)

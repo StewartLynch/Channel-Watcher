@@ -31,6 +31,20 @@ extension Playlist: BaseModel {
         completion(newPlaylist)
     }
     
+    func playlistVideos(order: SortOrder) -> [Video] {
+        var theseVideos = videos?.allObjects as? [Video] ?? []
+        if order == .ascending {
+            return theseVideos.sorted(
+                by:
+                    {($0.publishedAt ?? Date()).startOfDay < ($1.publishedAt ?? Date()).startOfDay},
+                    {$0.title ?? "" < $1.title ?? ""})
+        } else {
+            return theseVideos.sorted(
+                by:
+                    {($0.publishedAt ?? Date()).startOfDay > ($1.publishedAt ?? Date()).startOfDay},
+                    {$0.title ?? "" > $1.title ?? ""})
+        }
+    }
     var playlistVideos: [Video] {
         var theseVideos = videos?.allObjects as? [Video] ?? []
         return theseVideos.sorted(

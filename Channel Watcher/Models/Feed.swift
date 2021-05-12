@@ -35,6 +35,7 @@ struct Items: Codable, Identifiable {
         let description: String
         let thumbnails: Thumbnails
         let resourceId: ResourceId?
+        let playlistId: String?
         let channelId: String?
     }
     
