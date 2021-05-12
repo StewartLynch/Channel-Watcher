@@ -17,12 +17,7 @@ struct ChannelPicker: View {
         ZStack {
             NavigationView {
                 VStack {
-                        Text("Your Watched Channels")
-                            .font(.title)
-                            .padding(.top, 40)
-                            .onTapGesture {
-                                UIApplication.shared.endEditing()
-                            }
+
                     VStack {
                         Picker("Search Type", selection: $byId) {
                             Text("Channel Id").tag(true)
@@ -32,7 +27,6 @@ struct ChannelPicker: View {
                         HStack(alignment: .center) {
                             TextField(byId ? "Enter Channel ID" : "Enter Channel name", text: $channelPickerVM.youtubeID)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .padding(.top)
                             Button {
                                 channelPickerVM.addChannel(youtubeID: channelPickerVM.youtubeID, byId: byId)
                             } label: {
@@ -42,6 +36,11 @@ struct ChannelPicker: View {
                             .padding(.vertical)
                             .disabled(channelPickerVM.youtubeID.isEmpty)
                         }
+                        Text("Watched Channels")
+                            .font(.title)
+                            .onTapGesture {
+                                UIApplication.shared.endEditing()
+                            }
                     }
                     .frame(width: 300)
                     List {
