@@ -30,17 +30,23 @@ struct Items: Codable, Identifiable {
             let videoId: String
         }
         
-        let publishedAt: Date
+        // Unfortunately the pulishedAt date is in .iso8601 format, but sometimes has fractional seconds and sometimes not.  This is a problem for the Decodable dateDecoding strategy so I need to decode it as a string and then extract the date portion only and convert it to a date.
+        let publishedAt: String
+        var publishedAtDate: String {
+            String(publishedAt.prefix(10))
+        }
+        let channelId: String?
         let title: String
         let description: String
         let thumbnails: Thumbnails
         let resourceId: ResourceId?
         let playlistId: String?
-        let channelId: String?
+
     }
     
     let id: String
     let snippet: Snippet
+
     
 }
 

@@ -21,7 +21,7 @@
 		BB3783C7264B03730010136C /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C6264B03730010136C /* Extension+String.swift */; };
 		BB3783CA264B24870010136C /* SortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C9264B24870010136C /* SortOrder.swift */; };
 		BBBA5B442644530A006225B0 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA5B432644530A006225B0 /* AlertType.swift */; };
-		BBC1CE37264B9E41001D4B53 /* YTChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1CE36264B9E41001D4B53 /* YTChannel.swift */; };
+		BBC1CE39264C3C8B001D4B53 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1CE38264C3C8B001D4B53 /* DateFormatter+Extension.swift */; };
 		BBD195BD26439FD200134F66 /* Channel_WatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */; };
 		BBD195BF26439FD200134F66 /* ChannelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD195BE26439FD200134F66 /* ChannelPicker.swift */; };
 		BBD195C126439FD300134F66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD195C026439FD300134F66 /* Assets.xcassets */; };
@@ -57,7 +57,7 @@
 		BB3783C8264B121F0010136C /* Channel Watcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Channel Watcher.entitlements"; sourceTree = "<group>"; };
 		BB3783C9264B24870010136C /* SortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrder.swift; sourceTree = "<group>"; };
 		BBBA5B432644530A006225B0 /* AlertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
-		BBC1CE36264B9E41001D4B53 /* YTChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTChannel.swift; sourceTree = "<group>"; };
+		BBC1CE38264C3C8B001D4B53 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		BBD195B926439FD200134F66 /* Channel Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Channel Watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel_WatcherApp.swift; sourceTree = "<group>"; };
 		BBD195BE26439FD200134F66 /* ChannelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPicker.swift; sourceTree = "<group>"; };
@@ -169,7 +169,6 @@
 				BB354D5E2645D1A100EEB46C /* Constant.swift */,
 				BBD195CE26439FF600134F66 /* YouTube.xcdatamodeld */,
 				BBD195D226439FF600134F66 /* Feed.swift */,
-				BBC1CE36264B9E41001D4B53 /* YTChannel.swift */,
 				BBD195CC26439FF600134F66 /* Playlist+Extension.swift */,
 				BBD195CD26439FF600134F66 /* Video+Extension.swift */,
 				BBD195D026439FF600134F66 /* BaseModel.swift */,
@@ -190,6 +189,7 @@
 				BBD195DD2643A01D00134F66 /* Sort+Extension.swift */,
 				BBD195DE2643A01D00134F66 /* Array+Extension.swift */,
 				BB3783C6264B03730010136C /* Extension+String.swift */,
+				BBC1CE38264C3C8B001D4B53 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,9 +294,9 @@
 				BBD195D926439FF600134F66 /* Feed.swift in Sources */,
 				BB3783C5264B021A0010136C /* UIApplication+Extension.swift in Sources */,
 				BBD195D626439FF600134F66 /* YouTube.xcdatamodeld in Sources */,
-				BBC1CE37264B9E41001D4B53 /* YTChannel.swift in Sources */,
 				BBD195E12643A01D00134F66 /* Array+Extension.swift in Sources */,
 				BBD195D826439FF600134F66 /* Channel+extension.swift in Sources */,
+				BBC1CE39264C3C8B001D4B53 /* DateFormatter+Extension.swift in Sources */,
 				BB3783C7264B03730010136C /* Extension+String.swift in Sources */,
 				BBD195E02643A01D00134F66 /* Sort+Extension.swift in Sources */,
 				BBD195EA2643A08700134F66 /* FetchType.swift in Sources */,
