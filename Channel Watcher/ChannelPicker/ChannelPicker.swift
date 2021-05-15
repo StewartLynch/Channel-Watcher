@@ -97,6 +97,9 @@ struct ChannelPicker: View {
             #else
                 catalyst = false
             #endif
+            if Constant.apiKey == "" {
+                channelPickerVM.alertType = .ok(title: "API Key Missing", message: "You need to add yor API Key to the Constants file")
+            }
         }
         .alert(item: $channelPickerVM.alertType) { $0.alert}
     }

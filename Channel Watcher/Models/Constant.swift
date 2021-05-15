@@ -41,7 +41,8 @@ import Foundation
 
 enum Constant {
     // Enter your YouTube Data API Key here.  See https://developers.google.com/youtube/v3/getting-started
-    static let apiKey = "AIzaSyAfF93xIFQEVYXjci2P3VYdhIWNFG9n7cw"
+    static let apiKey = ""
+    
 }
 
 
