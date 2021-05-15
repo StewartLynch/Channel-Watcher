@@ -47,7 +47,7 @@ extension BaseModel {
     }
     
     static func deleteAll() {
-        print("Deleting all Data")
+//        print("Deleting all Data")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Self.fetchRequest()
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {

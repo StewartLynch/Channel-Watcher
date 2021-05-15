@@ -11,8 +11,19 @@ import Combine
 class APIService {
     static let shared = APIService()
     var cancellables = Set<AnyCancellable>()
-    enum APIError: Error {
-        case error(_ errorString: String)
+    enum APIError: Error, LocalizedError {
+        case invalidURL
+        case decodingError(_ errorString: String)
+        
+        var errorDescription: String? {
+            switch self {
+            case .invalidURL:
+                return NSLocalizedString("Error: Invalid URL", comment: "")
+            case .decodingError(let errorString):
+                return errorString
+                
+            }
+        }
     }
     
     func getJSON<T: Decodable>(urlString: String,
@@ -20,7 +31,7 @@ class APIService {
     keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> AnyPublisher<T, APIError> {
         Future { promise in
             guard let url = URL(string: urlString) else {
-                return promise(.failure(.error(NSLocalizedString("Error: Invalid URL", comment: ""))))
+                return promise(.failure(.invalidURL))
             }
             let request = URLRequest(url: url)
             let decoder = JSONDecoder()
@@ -36,7 +47,7 @@ class APIService {
                         return
                     case .failure(let decodingError):
                         print("Error: \(decodingError.localizedDescription)")
-                        return promise(.failure(APIError.error("Error: \(decodingError.localizedDescription)")))
+                        return promise(.failure(APIError.decodingError(decodingError.localizedDescription)))
                     }
 
                 } receiveValue: { (decodedData) in

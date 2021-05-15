@@ -26,7 +26,6 @@ extension Video: BaseModel {
         newVideo.title = video.snippet.title
         newVideo.detail = video.snippet.description
         newVideo.notes = ""
-//        newVideo.publishedAt = video.snippet.publishedAt
         newVideo.publishedAt = DateFormatter.ytDateFormatter.date(from: video.snippet.publishedAtDate)
         newVideo.thumbnail = video.snippet.thumbnails.default?.url
         completion(newVideo)

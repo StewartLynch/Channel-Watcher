@@ -21,7 +21,9 @@ class ChannelPickerViewModel: ObservableObject {
         UpdateManager.shared.getResultsFor(fetchType: fetchType) { result in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.alertType = AlertType.ok(title: "APIError", message: error.localizedDescription)
+                }
             case .success(let items):
                 if let items = items {
                     if let _ = Channel.byChannelId(channelId: (items[0].id)) {
@@ -72,7 +74,7 @@ class ChannelPickerViewModel: ObservableObject {
     }
     
     func getPlayLists(channel: Channel, completion: () -> Void) {
-        print(channel.channelPlaylists.count)
+//        print(channel.channelPlaylists.count)
         completion()
     }
 }
@@ -94,6 +96,10 @@ struct ChannelViewModel: Identifiable {
     
     var lastUpdated: Date {
         channel.lastUpdated ?? Date()
+    }
+    
+    var channelDescription: String {
+        channel.channelDescription ?? ""
     }
     
     var imageURL: URL? {

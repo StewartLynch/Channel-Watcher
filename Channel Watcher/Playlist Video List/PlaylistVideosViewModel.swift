@@ -17,13 +17,14 @@ class PlaylistVideosViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
         let thisPlaylist = Playlist.byId(id: playlist.id) as! Playlist
-        print(dateFormatter.string(from: playlist.lastUpdated))
+//        print(dateFormatter.string(from: playlist.lastUpdated))
         if thisPlaylist.playlistVideos.count == 0 {
             Channel.addAllVideosFor(thisPlaylist) {
                 self.updateList(for: playlist)
             }
         } else {
             if playlist.lastUpdated.startOfDay < Date().startOfDay {
+                print("Checking for new videos")
                 updateVideos(for: thisPlaylist) {
                     self.updateList(for: playlist)
                 }
@@ -50,7 +51,7 @@ class PlaylistVideosViewModel: ObservableObject {
     }
     
     func updateVideos(for playlist: Playlist, completion: @escaping () -> Void) {
-        print("Checking for updated playlists")
+//        print("Checking for updated playlists")
         UpdateManager.shared.getResultsFor(fetchType: .videos(playlist.playlistId!)) { result in
             switch result {
             case .success(let videoItems):
@@ -60,13 +61,13 @@ class PlaylistVideosViewModel: ObservableObject {
                     let allYTVideoIds = videoItems.map {$0.id}
                     let allCDVideoIds = self.videos.map{$0.videoID}
                     let missingVideoIds = allYTVideoIds.difference(from: allCDVideoIds)
-                    print("Missing videos",missingVideoIds)
+//                    print("Missing videos",missingVideoIds)
                     if missingVideoIds.isEmpty {
                         completion()
                     } else {
                         for missingVideoId in missingVideoIds {
                             if let video = videoItems.first(where: {$0.id == missingVideoId}) {
-                                print("Adding \(video.snippet.title)")
+//                                print("Adding \(video.snippet.title)")
                                 // Create a new playlist
                                 if video.snippet.thumbnails.default != nil {
                                     Video.newVideoForPlaylist(video: video) { newVideo in
@@ -76,7 +77,7 @@ class PlaylistVideosViewModel: ObservableObject {
                             } else {
                                 let video = Video.byVideoId(videoId: missingVideoId).first
                                 if let video = video {
-                                    print("Removing \(video.title ?? "")")
+//                                    print("Removing \(video.title ?? "")")
                                     try? video.delete()
                                 }
                             }
@@ -111,6 +112,10 @@ struct VideoViewModel: Identifiable {
         video.notes ?? ""
     }
     
+    var isFavorite:Bool {
+        video.isFavorite
+    }
+    
     var publishedAt: String {
         Self.dateFormatter.dateStyle = .medium
         if let publishedAt = video.publishedAt {
@@ -121,7 +126,6 @@ struct VideoViewModel: Identifiable {
        
     }
 
-    
     var thumbnail: URL? {
         video.thumbnail
     }

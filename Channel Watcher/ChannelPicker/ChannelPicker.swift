@@ -13,11 +13,11 @@ struct ChannelPicker: View {
     @State private var selectedChannel: ChannelViewModel?
     @State private var showChannel = false
     @State private var byId = true
+    @State private var catalyst = false
     var body: some View {
         ZStack {
             NavigationView {
                 VStack {
-
                     VStack {
                         Picker("Search Type", selection: $byId) {
                             Text("Channel Id").tag(true)
@@ -64,7 +64,7 @@ struct ChannelPicker: View {
                                             .scaledToFit()
                                             .frame(width: 60, height: 60)
                                             .cornerRadius(10)
-                                        Text(channel.title)
+                                            Text(channel.title)
                                     }
                                 }
                             }
@@ -79,9 +79,9 @@ struct ChannelPicker: View {
                     Spacer()
                 }
                 .navigationTitle("Channel Watcher")
-                .navigationBarItems(trailing: EditButton())
-                .frame(width: 400)
-                .listStyle(GroupedListStyle())
+                .navigationBarItems(trailing: editButtonOrEmtyView()) // Only show edit button on MacCatalyst
+                .frame(minWidth: 300, maxWidth: 400)
+                .listStyle(PlainListStyle())
                 .padding()
             }
             .navigationViewStyle(StackNavigationViewStyle()) // prevent split view from happening here
@@ -92,8 +92,23 @@ struct ChannelPicker: View {
         }
         .onAppear {
             channelPickerVM.getAllChannels()
+            #if targetEnvironment(macCatalyst)
+                catalyst = true
+            #else
+                catalyst = false
+            #endif
         }
         .alert(item: $channelPickerVM.alertType) { $0.alert}
+    }
+}
+
+extension ChannelPicker {
+    @ViewBuilder func editButtonOrEmtyView() -> some View {
+        if catalyst {
+            EditButton()
+        } else {
+            EmptyView()
+        }
     }
 }
 

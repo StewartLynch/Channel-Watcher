@@ -69,6 +69,7 @@ extension Channel: BaseModel {
         newChannel.channelId = item.id
         newChannel.imageURL = item.snippet.thumbnails.default?.url
         newChannel.title = item.snippet.title
+        newChannel.channelDescription = item.snippet.description
         newChannel.lastUpdated = Date()
         do {
             try newChannel.save()

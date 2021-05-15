@@ -20,6 +20,7 @@
 		BB3783C5264B021A0010136C /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C4264B021A0010136C /* UIApplication+Extension.swift */; };
 		BB3783C7264B03730010136C /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C6264B03730010136C /* Extension+String.swift */; };
 		BB3783CA264B24870010136C /* SortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3783C9264B24870010136C /* SortOrder.swift */; };
+		BB5B58D4264C614C003B219C /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5B58D3264C614C003B219C /* ErrorType.swift */; };
 		BBBA5B442644530A006225B0 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBA5B432644530A006225B0 /* AlertType.swift */; };
 		BBC1CE39264C3C8B001D4B53 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC1CE38264C3C8B001D4B53 /* DateFormatter+Extension.swift */; };
 		BBD195BD26439FD200134F66 /* Channel_WatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */; };
@@ -56,6 +57,7 @@
 		BB3783C6264B03730010136C /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		BB3783C8264B121F0010136C /* Channel Watcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Channel Watcher.entitlements"; sourceTree = "<group>"; };
 		BB3783C9264B24870010136C /* SortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOrder.swift; sourceTree = "<group>"; };
+		BB5B58D3264C614C003B219C /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		BBBA5B432644530A006225B0 /* AlertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		BBC1CE38264C3C8B001D4B53 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		BBD195B926439FD200134F66 /* Channel Watcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Channel Watcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +179,7 @@
 				BBBA5B432644530A006225B0 /* AlertType.swift */,
 				BB12BAB7264617FB008B67AD /* ModalType.swift */,
 				BB3783C9264B24870010136C /* SortOrder.swift */,
+				BB5B58D3264C614C003B219C /* ErrorType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				BBD195E02643A01D00134F66 /* Sort+Extension.swift in Sources */,
 				BBD195EA2643A08700134F66 /* FetchType.swift in Sources */,
 				BB354D7E2646042600EEB46C /* PlaylistSideBar.swift in Sources */,
+				BB5B58D4264C614C003B219C /* ErrorType.swift in Sources */,
 				BB12BAB8264617FB008B67AD /* ModalType.swift in Sources */,
 				BB3783CA264B24870010136C /* SortOrder.swift in Sources */,
 				BB354D5F2645D1A100EEB46C /* Constant.swift in Sources */,

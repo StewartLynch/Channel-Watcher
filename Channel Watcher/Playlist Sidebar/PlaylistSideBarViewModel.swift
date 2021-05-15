@@ -26,10 +26,10 @@ class PlaylistSideBarViewModel: ObservableObject {
     }
     
     func loadData(channel: ChannelViewModel) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = .full
+//        print(dateFormatter.string(from: channel.lastUpdated))
         let thisChannel = Channel.byId(id: channel.id) as! Channel
-        print(dateFormatter.string(from: channel.lastUpdated))
         if thisChannel.channelPlaylists.count == 0 {
             Channel.addAllPlaylistsFor(thisChannel) {
                 self.updateList(for: channel)
@@ -65,7 +65,7 @@ class PlaylistSideBarViewModel: ObservableObject {
     }
     
     func updatePlaylists(for channel: Channel, completion: @escaping () -> Void) {
-        print("Checking for updated playlists")
+        print("Checking for new playlists")
         UpdateManager.shared.getResultsFor(fetchType: .playlists(channel.channelId!)) { result in
             switch result {
             case .success(let playlistItems):
@@ -73,15 +73,16 @@ class PlaylistSideBarViewModel: ObservableObject {
                 if let playlistItems = playlistItems {
                     // We now have all items
                     let allYTPlaylistsIds = playlistItems.map {$0.id}
-                    let allCDPlaylistIds = self.playlists.map{$0.playlistId}
+                    let CDPlaylists = channel.channelPlaylists(hideHidden: false).map(PlaylistViewModel.init)
+                    let allCDPlaylistIds = CDPlaylists.map{$0.playlistId}
                     let missingPlaylistIds = allYTPlaylistsIds.difference(from: allCDPlaylistIds)
-                    print("Missing playlists",missingPlaylistIds)
+//                    print("Missing playlists",missingPlaylistIds)
                     if missingPlaylistIds.isEmpty {
                         completion()
                     } else {
                         for missingPlaylistId in missingPlaylistIds {
                             if let playlist = playlistItems.first(where: {$0.id == missingPlaylistId}) {
-                                print("Adding \(playlist.snippet.title)")
+//                                print("Adding \(playlist.snippet.title)")
                                 // Create a new playlist
                                 if playlist.snippet.thumbnails.default != nil {
                                     Playlist.newPlaylistForChannel(playlist: playlist) { newPlaylist in
@@ -91,7 +92,7 @@ class PlaylistSideBarViewModel: ObservableObject {
                             } else {
                                 let playlist = Playlist.byPlaylistId(playlistId: missingPlaylistId).first
                                 if let playlist = playlist {
-                                    print("Removing \(playlist.title ?? "")")
+//                                    print("Removing \(playlist.title ?? "")")
                                     try? playlist.delete()
                                 }
                             }
