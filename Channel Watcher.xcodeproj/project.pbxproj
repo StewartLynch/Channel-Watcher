@@ -142,8 +142,8 @@
 			children = (
 				BB3783C8264B121F0010136C /* Channel Watcher.entitlements */,
 				BBD195BC26439FD200134F66 /* Channel_WatcherApp.swift */,
-				BBD195EB2643A0EE00134F66 /* ChannelPicker */,
 				BB12BABB26462993008B67AD /* StartView.swift */,
+				BBD195EB2643A0EE00134F66 /* ChannelPicker */,
 				BB354D702646042600EEB46C /* Playlist Sidebar */,
 				BB354D662646042600EEB46C /* Playlist Video List */,
 				BB354D6A2646042600EEB46C /* Video */,
