@@ -10,7 +10,7 @@ import Foundation
 // API Reference: https://developers.google.com/youtube/v3/docs
 
 //Stewart Lynch
-// Channel Name: Stewart Lynch
+// Channel Name: StewartLynch
 //
 //Sean Allen
 // UCbTw29mcP12YlTt1EpUaVJw
