@@ -91,7 +91,6 @@ struct ChannelPicker: View {
             }
         }
         .onAppear {
-            channelPickerVM.getAllChannels()
             #if targetEnvironment(macCatalyst)
                 catalyst = true
             #else
@@ -99,6 +98,8 @@ struct ChannelPicker: View {
             #endif
             if Constant.apiKey == "" {
                 channelPickerVM.alertType = .ok(title: "API Key Missing", message: "You need to add yor API Key to the Constants file")
+            } else {
+                channelPickerVM.getAllChannels()
             }
         }
         .alert(item: $channelPickerVM.alertType) { $0.alert}

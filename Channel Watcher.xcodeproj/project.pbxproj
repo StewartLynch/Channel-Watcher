@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB12BAB8264617FB008B67AD /* ModalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12BAB7264617FB008B67AD /* ModalType.swift */; };
 		BB12BABC26462993008B67AD /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12BABB26462993008B67AD /* StartView.swift */; };
 		BB354D5F2645D1A100EEB46C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB354D5E2645D1A100EEB46C /* Constant.swift */; };
 		BB354D622645FCB100EEB46C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BB354D612645FCB100EEB46C /* SDWebImageSwiftUI */; };
@@ -44,7 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BB12BAB7264617FB008B67AD /* ModalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalType.swift; sourceTree = "<group>"; };
 		BB12BABB26462993008B67AD /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		BB354D5E2645D1A100EEB46C /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BB354D672646042600EEB46C /* PlaylistVideosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistVideosView.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				BBD195D126439FF600134F66 /* Channel+extension.swift */,
 				BBD195E92643A08700134F66 /* FetchType.swift */,
 				BBBA5B432644530A006225B0 /* AlertType.swift */,
-				BB12BAB7264617FB008B67AD /* ModalType.swift */,
 				BB3783C9264B24870010136C /* SortOrder.swift */,
 				BB5B58D3264C614C003B219C /* ErrorType.swift */,
 			);
@@ -305,7 +302,6 @@
 				BBD195EA2643A08700134F66 /* FetchType.swift in Sources */,
 				BB354D7E2646042600EEB46C /* PlaylistSideBar.swift in Sources */,
 				BB5B58D4264C614C003B219C /* ErrorType.swift in Sources */,
-				BB12BAB8264617FB008B67AD /* ModalType.swift in Sources */,
 				BB3783CA264B24870010136C /* SortOrder.swift in Sources */,
 				BB354D5F2645D1A100EEB46C /* Constant.swift in Sources */,
 				BB354D782646042600EEB46C /* VideoWebView.swift in Sources */,
