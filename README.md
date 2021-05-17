@@ -2,9 +2,9 @@
 
 An open source project build using SwiftUI and Combine that lets you monitor a variety of different YouTube channels and their corresoinding playlists.  Play the videos inline within the app on an iPhone, iPad or Macintosh.
 
-You will need to scure your own YouTube Google API to run the project.  Please watch the video linked below for more detailed information on how to do this.
+You will need to scure your own YouTube Google API to run the project.  Please watch the video linked below for more detailed information on how to do this and for a code walkthrough.
 
-![OpenSourceIntro.001](OpenSourceIntro.001.jpeg)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=u1kGK9RTEH4" target="_blank"><img src="http://img.youtube.com/vi/u1kGK9RTEH4/0.jpg" alt="YouTube Channel Watcher" width="480" height="360" border="10" /></a>
 
 ## How to Proceed
 
