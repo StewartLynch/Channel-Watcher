@@ -8,30 +8,27 @@
 import Foundation
 
 // API Reference: https://developers.google.com/youtube/v3/docs
+enum Constant {
+    // Enter your YouTube Data API Key here.  See https://developers.google.com/youtube/v3/getting-started
+    static let apiKey = ""
+}
+
+// Some channels to try
 
 //Stewart Lynch
 // Channel Name: StewartLynch
-//
-//Sean Allen
-// UCbTw29mcP12YlTt1EpUaVJw
-//
+
 //Paul Hudson
 // UCmJi5RdDLgzvkl3Ly0DRMlQ
-//
-// tundsdev
-// UC7AuV86ZjR3YaEdb5USNvWQ
+
+//Sean Allen
+// UCbTw29mcP12YlTt1EpUaVJw
 
 // AzamSharp
 // Channel Name: AzamSharp
 
-// Eugene Berezin
-// UCymXZY892VewA4k4tni8Xzg
-
 // Kilo Loco
 // UCv75sKQFFIenWHrprnrR9aA
-
-// Vubcebt Pardeilles
-// UCjkoQk5fOk6lH-shlm53vlw
 
 // Jared Davidson
 // UCDIBBmkZIB2hjBsk1hUImdA
@@ -39,10 +36,32 @@ import Foundation
 // CodeWithChris
 // Channel Name: CodeWithChris
 
-enum Constant {
-    // Enter your YouTube Data API Key here.  See https://developers.google.com/youtube/v3/getting-started
-    static let apiKey = ""
-    
-}
+// PhysicsNerd
+// UCAkHGQ1Z78fH9WHp45Dq2rQ
 
+// iOS Academy
+// UCnksRRifsSCGUZpQukUKAyg
 
+// Rebeloper
+// UCK88iDIf2V6w68WvC-k7jcg
+
+// A Swifty Tilting Planet
+// UCgdLepqjYyKF4e8vxBZGdEQ
+
+// tundsdev
+// UC7AuV86ZjR3YaEdb5USNvWQ
+
+// Let's Build that App
+// UCuP2vJ6kRutQBfRmdcI92mA
+
+// Firebase
+// Channel Name: Firebase
+
+// Eugene Berezin
+// UCymXZY892VewA4k4tni8Xzg
+
+// Vubcent Pardeilles
+// UCjkoQk5fOk6lH-shlm53vlw
+
+// Flo Writes Code
+// UCYt_AtiKPyda44NYzwABvQQ
